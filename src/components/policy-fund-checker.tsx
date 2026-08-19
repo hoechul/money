@@ -7,7 +7,6 @@ import { matchExternalPrograms } from "@/lib/external-eligibility";
 import { CompanyForm } from "@/components/company-form";
 import { ResultsPanel } from "@/components/results-panel";
 import { ExternalProgramsPanel } from "@/components/external-programs-panel";
-import { SubmissionPanel } from "@/components/submission-panel";
 
 export function PolicyFundChecker() {
   const [profile, setProfile] = useState(DEFAULT_PROFILE);
@@ -22,7 +21,6 @@ export function PolicyFundChecker() {
       <CompanyForm profile={profile} onChange={setProfile} />
       <aside className="flex flex-col gap-6 lg:sticky lg:top-6">
         <ResultsPanel result={result} />
-        <SubmissionPanel profile={profile} />
         <ExternalProgramsPanel programs={externalPrograms} />
       </aside>
     </div>

@@ -13,6 +13,7 @@ import {
   TextInput,
   ToggleRow,
 } from "@/components/form-controls";
+import { SubmissionPanel } from "@/components/submission-panel";
 
 export function CompanyForm({
   profile,
@@ -175,6 +176,8 @@ export function CompanyForm({
           }}
         />
       </Section>
+
+      <SubmissionPanel profile={profile} />
 
       <Accordion
         title="정책자금 이력 · 성과 지표"
