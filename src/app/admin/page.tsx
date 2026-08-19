@@ -4,6 +4,7 @@ import { desc } from "drizzle-orm";
 import { ADMIN_SESSION_COOKIE, isValidSessionValue } from "@/lib/session-token";
 import { getDb } from "@/db";
 import { submissions } from "@/db/schema";
+import { toProfileDisplaySections } from "@/lib/profile-display";
 import { logout } from "./actions";
 
 export const metadata = {
@@ -97,9 +98,28 @@ export default async function AdminPage() {
 
               <details className="mt-4">
                 <summary className="cursor-pointer text-xs font-semibold text-brand-600">입력한 회사 조건 전체 보기</summary>
-                <pre className="mt-2 overflow-x-auto rounded-lg bg-slate-50 p-3 text-[11px] leading-relaxed text-slate-600">
-                  {JSON.stringify(row.profile, null, 2)}
-                </pre>
+                <div className="mt-3 flex flex-col gap-4">
+                  {toProfileDisplaySections(row.profile).map((section) => (
+                    <div key={section.title}>
+                      <p className="text-xs font-bold text-navy-800">{section.title}</p>
+                      <dl className="mt-1.5 grid gap-x-4 gap-y-1 sm:grid-cols-2">
+                        {section.rows.map((r) => (
+                          <div key={r.label} className="flex justify-between gap-3 rounded-md bg-slate-50 px-2.5 py-1.5 text-xs">
+                            <dt className="text-slate-500">{r.label}</dt>
+                            <dd className="shrink-0 font-semibold text-navy-800">{r.value}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  ))}
+                </div>
+
+                <details className="mt-3">
+                  <summary className="cursor-pointer text-[11px] font-semibold text-slate-400">원본 JSON 보기</summary>
+                  <pre className="mt-2 overflow-x-auto rounded-lg bg-slate-50 p-3 text-[11px] leading-relaxed text-slate-600">
+                    {JSON.stringify(row.profile, null, 2)}
+                  </pre>
+                </details>
               </details>
             </div>
           </details>
