@@ -113,6 +113,34 @@ export function NullableNumberInput({
   );
 }
 
+function formatBusinessNumber(raw: string) {
+  const digits = raw.replace(/\D/g, "").slice(0, 10);
+  const parts = [digits.slice(0, 3), digits.slice(3, 5), digits.slice(5, 10)].filter(Boolean);
+  return parts.join("-");
+}
+
+export function BusinessNumberInput({
+  value,
+  onChange,
+  disabled,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  disabled?: boolean;
+}) {
+  return (
+    <input
+      type="text"
+      inputMode="numeric"
+      placeholder="000-00-00000"
+      value={value}
+      disabled={disabled}
+      onChange={(e) => onChange(formatBusinessNumber(e.target.value))}
+      className={inputClass}
+    />
+  );
+}
+
 export function SelectInput<T extends string>({
   value,
   onChange,

@@ -5,6 +5,7 @@ import type { CompanyProfile } from "@/lib/types";
 import { INDUSTRY_OPTIONS, EXCLUDED_INDUSTRY_EXAMPLES } from "@/lib/reference-data";
 import {
   Accordion,
+  BusinessNumberInput,
   Field,
   NullableNumberInput,
   NumberInput,
@@ -41,6 +42,13 @@ export function CompanyForm({
               { value: "individual", label: "개인사업자" },
               { value: "prospective", label: "예비창업자 (설립 전)" },
             ]}
+          />
+        </Field>
+        <Field label="사업자등록번호" hint="예비창업자는 비워두세요.">
+          <BusinessNumberInput
+            value={profile.businessRegistrationNumber}
+            onChange={(v) => set("businessRegistrationNumber", v)}
+            disabled={profile.companyType === "prospective"}
           />
         </Field>
         <Field label="설립일 / 사업개시일" hint="예비창업자는 비워두세요.">

@@ -54,6 +54,7 @@ export function toProfileDisplaySections(p: CompanyProfile): ProfileDisplaySecti
       title: "기본 정보",
       rows: [
         { label: "사업 형태", value: COMPANY_TYPE_LABEL[p.companyType] },
+        { label: "사업자등록번호", value: p.businessRegistrationNumber || "미입력" },
         { label: "설립일 / 사업개시일", value: p.foundedDate || "미입력" },
         { label: "업종", value: getIndustry(p.industry).label },
         { label: "상시근로자수", value: num(p.employees, "명") },

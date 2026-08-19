@@ -10,6 +10,7 @@ export type Tristate = "unknown" | "yes" | "no";
 export interface CompanyProfile {
   // --- 기본 정보 ---
   companyType: CompanyType;
+  businessRegistrationNumber: string; // 사업자등록번호 (000-00-00000), 예비창업자는 빈 문자열
   foundedDate: string; // yyyy-mm-dd, 예비창업자는 빈 문자열
   industry: string; // IndustryOption value
   isExcludedIndustry: boolean; // 융자제외 대상 업종(별표1) 영위 여부
@@ -81,6 +82,7 @@ export interface CompanyProfile {
 
 export const DEFAULT_PROFILE: CompanyProfile = {
   companyType: "corporation",
+  businessRegistrationNumber: "",
   foundedDate: "",
   industry: "manufacturing",
   isExcludedIndustry: false,
