@@ -42,3 +42,6 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# stray experiment folder, not part of the app
+/policy-fund-landing
